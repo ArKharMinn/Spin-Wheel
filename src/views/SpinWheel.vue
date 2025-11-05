@@ -2,7 +2,6 @@
   <div class="wheel-container">
     <div class="wheel-wrapper">
       <canvas ref="wheel" width="500" height="500"></canvas>
-      <!-- Pointer -->
       <div class="pointer"></div>
     </div>
     <button @click="spinWheel" :disabled="spinning" class="spin-button">
@@ -42,13 +41,11 @@ const drawWheel = () => {
     const startAngle = i * segmentAngle + angle.value - Math.PI / 2
     const endAngle = startAngle + segmentAngle
 
-    // Gradient color
     const gradient = ctx.createLinearGradient(0, 0, size, size)
     gradient.addColorStop(0, i % 2 === 0 ? '#FFCC00' : '#FF6600')
     gradient.addColorStop(1, i % 2 === 0 ? '#FFD700' : '#FF4500')
     ctx.fillStyle = gradient
 
-    // Draw segment
     ctx.beginPath()
     ctx.moveTo(center, center)
     ctx.arc(center, center, radius, startAngle, endAngle)
@@ -58,7 +55,6 @@ const drawWheel = () => {
     ctx.lineWidth = 2
     ctx.stroke()
 
-    // Draw text
     ctx.save()
     ctx.translate(center, center)
     ctx.rotate(startAngle + segmentAngle / 2)
@@ -70,7 +66,6 @@ const drawWheel = () => {
     ctx.restore()
   })
 
-  // Draw center circle
   ctx.beginPath()
   ctx.arc(center, center, 40, 0, 2 * Math.PI)
   ctx.fillStyle = '#fff'
@@ -136,13 +131,11 @@ onMounted(() => {
   height: 500px;
 }
 
-/* Canvas shadow and pointer */
 canvas {
   border-radius: 50%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Pointer triangle */
 .pointer {
   position: absolute;
   top: -15px;
@@ -156,7 +149,6 @@ canvas {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Spin button */
 .spin-button {
   padding: 12px 30px;
   font-size: 18px;
@@ -179,7 +171,6 @@ canvas {
   cursor: not-allowed;
 }
 
-/* Winner text */
 .winner-text {
   font-size: 22px;
   font-weight: bold;
